@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    username: root
+    password: mysqlpassword
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://172.16.1.20:3306/wanli?useUnicode=true&characterEncoding=utf-8
+    hikari:
+      auto-commit: true #\u6B64\u5C5E\u6027\u63A7\u5236\u4ECE\u6C60\u8FD4\u56DE\u7684\u8FDE\u63A5\u7684\u9ED8\u8BA4\u81EA\u52A8\u63D0\u4EA4\u884C\u4E3A,\u9ED8\u8BA4\u503C\uFF1Atrue
+      connection-init-sql: SET NAMES utf8mb4
+      connection-timeout: 30000 #\u6570\u636E\u5E93\u8FDE\u63A5\u8D85\u65F6\u65F6\u95F4,\u9ED8\u8BA430\u79D2\uFF0C\u537330000
+      connection-test-query: SELECT 1
+      idle-timeout: 600000 #\u7A7A\u95F2\u8FDE\u63A5\u5B58\u6D3B\u6700\u5927\u65F6\u95F4\uFF0C\u9ED8\u8BA4600000\uFF0810\u5206\u949F\uFF09
+      minimum-idle: 2 #\u6700\u5C0F\u7A7A\u95F2\u8FDE\u63A5\u6570\u91CF
+      maximum-pool-size: 3 #\u8FDE\u63A5\u6C60\u6700\u5927\u8FDE\u63A5\u6570\uFF0C\u9ED8\u8BA4\u662F10
+      max-lifetime: 1800000 #\u6B64\u5C5E\u6027\u63A7\u5236\u6C60\u4E2D\u8FDE\u63A5\u7684\u6700\u957F\u751F\u547D\u5468\u671F\uFF0C\u503C0\u8868\u793A\u65E0\u9650\u751F\u547D\u5468\u671F\uFF0C\u9ED8\u8BA41800000\u537330\u5206\u949F
+      pool-name: wanli-HikariCP
+  jpa:
+    database: mysql
+    hibernate:
+      ddl-auto: update
+  integration:
+    jdbc:
+      schema: classpath:org/springframework/integration/jdbc/schema-mysql.sql
+      initialize-schema: always
+server:
+  port: 8080
